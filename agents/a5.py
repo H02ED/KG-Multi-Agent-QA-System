@@ -113,13 +113,23 @@ def _w2d(text: str) -> str:
 # =============================================================================
 # DATA CLASS
 # =============================================================================
+# @dataclass
+# class Intent:
+#     question_type:    str
+#     keywords:         list[str]
+#     aspect:           str
+#     required_concept: str = ""
+#     ambiguous:        bool = False
+
 @dataclass
 class Intent:
-    question_type:    str
-    keywords:         list[str]
-    aspect:           str
+    question_type: str
+    keywords: list[str]
+    aspect: str
     required_concept: str = ""
-    ambiguous:        bool = False
+    ambiguous: bool = False
+    impossible: bool = False
+    vague_reason: str = ""
 
 
 # =============================================================================
@@ -139,19 +149,87 @@ class NLUnderstandingAgent:
 
     def run(self, question: str) -> Intent:
         q = question.lower()
+        
+        # nonexistent article
+        m = re.search(r'article\s+(\d+)', q)
+        if m:
+            art_num = int(m.group(1))
 
+            # your regulations clearly do not go near 999
+            if art_num > 300:
+                return Intent(
+                    question_type="general",
+                    keywords=[],
+                    aspect="general",
+                    impossible=True,
+                    vague_reason=f"Article {art_num} does not exist."
+                )
+
+        # VAGUE_PATTERNS = [
+        #     "overall", "all", "every", "summarize all", "summary",
+        #     "in general", "generally", "all regulations",
+        #     "unknown", "not specified", "any type", "all cases", "a bit", 
+        #     "maybe","perhaps","probably",
+        # ]
+        # if any(v in q for v in VAGUE_PATTERNS):
+        #     return Intent(
+        #         question_type="general",
+        #         keywords=[],
+        #         aspect="general",
+        #         ambiguous=True,
+        #         vague_reason="Question is too vague or broad."
+        #     )
+        
         VAGUE_PATTERNS = [
-            "overall", "all", "every", "summarize all", "summary",
-            "in general", "generally", "all regulations",
-            "unknown", "not specified", "any type", "all cases", "a bit", 
-            "maybe","perhaps","probably",
+            r"\boverall\b",
+            r"\ball\b",
+            r"\bevery\b",
+            r"\bsummarize all\b",
+            r"\bsummary\b",
+            r"\bin general\b",
+            r"\bgenerally\b",
+            r"\ball regulations\b",
+            r"\bunknown\b",
+            r"\bnot specified\b",
+            r"\bany type\b",
+            r"\ball cases\b",
+            r"\ba bit\b",
+            r"\bmaybe\b",
+            r"\bperhaps\b",
+            r"\bprobably\b",
         ]
 
-        if any(v in q for v in VAGUE_PATTERNS):
-            return None  # force fallback instead of bad extraction
+        if any(re.search(p, q) for p in VAGUE_PATTERNS):
+            return Intent(
+                question_type="general",
+                keywords=[],
+                aspect="general",
+                ambiguous=True,
+                vague_reason="Question is too vague or broad."
+            )
+            
+        BROAD_PATTERNS = [
+            "every fee",
+            "all fees",
+            "every regulation",
+            "all regulations",
+            "every student-related process",
+            "overall",
+            "all exceptions",
+            "summarize every",
+        ]
 
-        if any(k in q for k in ["penalty","punishment","consequence","fine",
-                                "suspend","expel","處分","警告","記過","退學"]):
+        if any(p in q for p in BROAD_PATTERNS):
+            return Intent(
+                question_type="general",
+                keywords=[],
+                aspect="general",
+                ambiguous=True,
+                vague_reason="Question is too broad."
+            )
+
+
+        if any(k in q for k in ["penalty","punishment","consequence","fine","suspend","expel","處分","警告","記過","退學"]):
             qtype = "penalty"
         elif any(k in q for k in ["require","must","need","obligat","應","須","必須"]):
             qtype = "requirement"
@@ -443,20 +521,30 @@ class DiagnosisAgent:
     }
 
     def run(self, execution: dict[str, Any], intent: Any = None, question: str = None) -> dict[str, str]:
+        if intent:
+            if getattr(intent, "ambiguous", False):
+                return {
+                    "label": "NO_DATA",
+                    "reason": intent.vague_reason or "Question too vague."
+                }
+
+            if getattr(intent, "impossible", False):
+                return {
+                    "label": "NO_DATA",
+                    "reason": intent.vague_reason or "Requested information does not exist."
+                }
 
         if execution.get("error") and not execution.get("rows"):
             err = str(execution["error"]).lower()
             if any(k in err for k in ["property does not exist", "type mismatch", "unknown label", "no such property"]):
                 return {"label": "SCHEMA_MISMATCH", "reason": err}
-            
-
             return {"label": "QUERY_ERROR", "reason": err}
+        
         rows = execution.get("rows", [])
         if not rows:
             return {"label": "NO_DATA", "reason": "No rules matched."}
 
         concept = getattr(intent, "required_concept", "") if intent else ""
-
         if concept and concept in self._CONCEPT_MUST_HAVE:
             must_have = self._CONCEPT_MUST_HAVE[concept]
 

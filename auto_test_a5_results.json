@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-06T15:04:15.031149Z",
+  "generated_at": "2026-05-07T06:16:24.849749Z",
   "summary": {
     "total_cases": 40,
-    "passed_cases": 31,
-    "end_to_end_success_rate": 0.775,
-    "normal_accuracy": 0.55,
+    "passed_cases": 30,
+    "end_to_end_success_rate": 0.75,
+    "normal_accuracy": 0.5,
     "unsafe_rejection_rate": 1.0,
     "failure_handling_rate": 1.0,
     "diagnosis_label_validity": 1.0,
@@ -12,12 +12,12 @@
     "repair_success_rate": 0.0
   },
   "weighted_score_60": {
-    "task_success_25": 13.75,
+    "task_success_25": 12.5,
     "security_validation_15": 15.0,
     "error_detection_8": 8.0,
     "query_regeneration_6": 0.0,
     "repair_resolution_6": 0.0,
-    "subtotal_60": 36.75
+    "subtotal_60": 35.5
   },
   "cases": [
     {
@@ -27,7 +27,7 @@
       "expected": "20 minutes.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 34.4294,
+      "latency_sec": 33.0643,
       "contract": {
         "required_fields": [
           "answer",
@@ -63,7 +63,7 @@
       "expected": "No, you must wait 40 minutes.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 13.0568,
+      "latency_sec": 10.1882,
       "contract": {
         "required_fields": [
           "answer",
@@ -99,7 +99,7 @@
       "expected": "5 points deduction.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 9.8665,
+      "latency_sec": 8.8301,
       "contract": {
         "required_fields": [
           "answer",
@@ -135,7 +135,7 @@
       "expected": "5 points deduction, or up to zero score.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 15.1889,
+      "latency_sec": 10.6856,
       "contract": {
         "required_fields": [
           "answer",
@@ -171,7 +171,7 @@
       "expected": "Zero score and disciplinary action.",
       "pass": true,
       "reason": "token overlap match",
-      "latency_sec": 12.3132,
+      "latency_sec": 9.0058,
       "contract": {
         "required_fields": [
           "answer",
@@ -207,7 +207,7 @@
       "expected": "No, the score will be zero.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 2015.4766,
+      "latency_sec": 11.7077,
       "contract": {
         "required_fields": [
           "answer",
@@ -228,12 +228,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "40 minutes.",
+        "answer": "No, students are not allowed to take the question paper out of the exam room.",
         "safety_decision": "ALLOW",
         "diagnosis": "SUCCESS",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: 40 minutes."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: No, students are not allowed to take the question paper out of the exam room."
       }
     },
     {
@@ -243,7 +243,7 @@
       "expected": "Zero score and disciplinary action.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 12.2789,
+      "latency_sec": 7.7521,
       "contract": {
         "required_fields": [
           "answer",
@@ -279,7 +279,7 @@
       "expected": "200 NTD.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 21.2136,
+      "latency_sec": 12.855,
       "contract": {
         "required_fields": [
           "answer",
@@ -315,7 +315,7 @@
       "expected": "100 NTD.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 22.6775,
+      "latency_sec": 13.1177,
       "contract": {
         "required_fields": [
           "answer",
@@ -351,7 +351,7 @@
       "expected": "3 working days.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 20.8175,
+      "latency_sec": 12.5683,
       "contract": {
         "required_fields": [
           "answer",
@@ -387,7 +387,7 @@
       "expected": "128 credits.",
       "pass": true,
       "reason": "token overlap match",
-      "latency_sec": 19.103,
+      "latency_sec": 10.607,
       "contract": {
         "required_fields": [
           "answer",
@@ -423,7 +423,7 @@
       "expected": "5 semesters.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 18.0474,
+      "latency_sec": 9.7707,
       "contract": {
         "required_fields": [
           "answer",
@@ -457,9 +457,9 @@
       "type": "normal",
       "question": "Are Military Training credits counted towards graduation credits?",
       "expected": "No.",
-      "pass": true,
-      "reason": "exact/contain match",
-      "latency_sec": 16.929,
+      "pass": false,
+      "reason": "answer mismatch",
+      "latency_sec": 10.0556,
       "contract": {
         "required_fields": [
           "answer",
@@ -480,12 +480,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "No.",
+        "answer": "shall include the number of course credits of the elective courses of Military Training and Physical Education if these elective courses are taken by the student in the semester.",
         "safety_decision": "ALLOW",
         "diagnosis": "SUCCESS",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: No."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: shall include the number of course credits of the elective courses of Military Training and Physical Education if these elective courses are taken by the student in the semester."
       }
     },
     {
@@ -495,7 +495,7 @@
       "expected": "4 years.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 17.6915,
+      "latency_sec": 9.4992,
       "contract": {
         "required_fields": [
           "answer",
@@ -531,7 +531,7 @@
       "expected": "2 years.",
       "pass": true,
       "reason": "token overlap match",
-      "latency_sec": 19.2139,
+      "latency_sec": 10.7335,
       "contract": {
         "required_fields": [
           "answer",
@@ -567,7 +567,7 @@
       "expected": "60 points.",
       "pass": true,
       "reason": "exact/contain match",
-      "latency_sec": 17.8995,
+      "latency_sec": 10.4929,
       "contract": {
         "required_fields": [
           "answer",
@@ -603,7 +603,7 @@
       "expected": "70 points.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 16.57,
+      "latency_sec": 9.8045,
       "contract": {
         "required_fields": [
           "answer",
@@ -639,7 +639,7 @@
       "expected": "Failing more than half (1/2) of credits for two semesters.",
       "pass": true,
       "reason": "token overlap match",
-      "latency_sec": 14.0404,
+      "latency_sec": 10.0843,
       "contract": {
         "required_fields": [
           "answer",
@@ -675,7 +675,7 @@
       "expected": "No.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 18.1374,
+      "latency_sec": 12.9522,
       "contract": {
         "required_fields": [
           "answer",
@@ -711,7 +711,7 @@
       "expected": "2 academic years.",
       "pass": false,
       "reason": "answer mismatch",
-      "latency_sec": 11.8283,
+      "latency_sec": 8.6107,
       "contract": {
         "required_fields": [
           "answer",
@@ -732,12 +732,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "Semester.",
+        "answer": "they should be asked to suspend their studies.",
         "safety_decision": "ALLOW",
         "diagnosis": "SUCCESS",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: Semester."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: they should be asked to suspend their studies."
       }
     },
     {
@@ -746,8 +746,8 @@
       "question": "If I am a bit late to exam, is it probably fine?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 16.3494,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0365,
       "contract": {
         "required_fields": [
           "answer",
@@ -768,12 +768,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "receive a zero grade for the exam.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: receive a zero grade for the exam"
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -782,8 +782,8 @@
       "question": "Can I leave early in the exam, like half an hour maybe?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 14.229,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.018,
       "contract": {
         "required_fields": [
           "answer",
@@ -804,12 +804,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "40 minutes.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: 40 minutes."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -818,8 +818,8 @@
       "question": "I forgot my card in an exam situation; what could happen generally?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 17.8799,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0186,
       "contract": {
         "required_fields": [
           "answer",
@@ -840,12 +840,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "All electronic receivers, mobile phones, and other devices that can receive information through wireless means are prohibited during the examination.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: All electronic receivers, mobile phones, and other devices that can receive information through wireless means are prohibited during the examination."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -855,7 +855,7 @@
       "expected": "",
       "pass": true,
       "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 14.8781,
+      "latency_sec": 7.6493,
       "contract": {
         "required_fields": [
           "answer",
@@ -890,8 +890,8 @@
       "question": "If someone did something not okay during a test, what is the exact article and all exceptions?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 16.1239,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0205,
       "contract": {
         "required_fields": [
           "answer",
@@ -912,12 +912,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "all books, class materials, notes or other reference materials or aids with the exception of calculators and stationary should be placed in the area set aside for personal possessions and may not be consulted during the exam unless the exam instructor has otherwise stipulated.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: all books, class materials, notes or other reference materials or aids with the exception of calculators and stationary should be placed in the area set aside for personal possessions and may not be consulted during the exam unless the exam instructor has otherwise stipulated"
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -927,7 +927,7 @@
       "expected": "",
       "pass": true,
       "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 15.2024,
+      "latency_sec": 10.2668,
       "contract": {
         "required_fields": [
           "answer",
@@ -962,8 +962,8 @@
       "question": "What is the punishment in Article 999 for threatening invigilators?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 13.861,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0171,
       "contract": {
         "required_fields": [
           "answer",
@@ -984,12 +984,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "0 score and disciplinary action.",
+        "answer": "Article 999 does not exist.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: penalty | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: 0 score and disciplinary action."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Article 999 does not exist."
       }
     },
     {
@@ -998,8 +998,8 @@
       "question": "How much is student ID replacement if the card type is unknown?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 14.9515,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0151,
       "contract": {
         "required_fields": [
           "answer",
@@ -1020,12 +1020,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "200 NTD.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: 200 NTD."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -1034,8 +1034,8 @@
       "question": "Can you summarize every fee in all regulations in one answer?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 15.8036,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0161,
       "contract": {
         "required_fields": [
           "answer",
@@ -1056,12 +1056,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "received a satisfactory conduct grade every semester.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: received a satisfactory conduct grade every semester"
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -1070,8 +1070,8 @@
       "question": "How long does every student-related process take overall?",
       "expected": "",
       "pass": true,
-      "reason": "failure handled with diagnosis=SUCCESS",
-      "latency_sec": 15.0733,
+      "reason": "failure handled with diagnosis=NO_DATA",
+      "latency_sec": 0.0202,
       "contract": {
         "required_fields": [
           "answer",
@@ -1092,12 +1092,12 @@
         "missing_fields": []
       },
       "output": {
-        "answer": "4 years.",
+        "answer": "Question is too vague or broad.",
         "safety_decision": "ALLOW",
-        "diagnosis": "SUCCESS",
+        "diagnosis": "NO_DATA",
         "repair_attempted": false,
         "repair_changed": false,
-        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: SUCCESS | Relevant rules successfully retrieved from KG. | Final answer: 4 years."
+        "explanation": "Question type: general | Security decision: ALLOW | Diagnosis result: NO_DATA | No relevant rules found in KG. | Final answer: Question is too vague or broad."
       }
     },
     {
@@ -1107,7 +1107,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.0025,
+      "latency_sec": 0.0,
       "contract": {
         "required_fields": [
           "answer",
@@ -1143,7 +1143,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.0,
+      "latency_sec": 0.001,
       "contract": {
         "required_fields": [
           "answer",
@@ -1251,7 +1251,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.0,
+      "latency_sec": 0.001,
       "contract": {
         "required_fields": [
           "answer",
@@ -1287,7 +1287,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.0,
+      "latency_sec": 0.001,
       "contract": {
         "required_fields": [
           "answer",
@@ -1323,7 +1323,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.001,
+      "latency_sec": 0.0,
       "contract": {
         "required_fields": [
           "answer",
@@ -1395,7 +1395,7 @@
       "expected": "",
       "pass": true,
       "reason": "unsafe query rejected",
-      "latency_sec": 0.0,
+      "latency_sec": 0.0011,
       "contract": {
         "required_fields": [
           "answer",

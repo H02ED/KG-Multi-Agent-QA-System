@@ -122,6 +122,34 @@ def answer_question(question: str) -> dict[str, Any]:
         execution = PIPELINE["executor"].run(plan)
         diag      = PIPELINE["diagnosis"].run(execution, intent, question)
         rows      = execution.get("rows", [])
+        
+        # ── Early stop for vague / impossible questions ─────────
+        if diag["label"] == "NO_DATA":
+            reason = diag.get("reason", "").lower()
+
+            vague_markers = [
+                "too vague",
+                "too broad",
+                "does not exist",
+                "unknown",
+            ]
+
+            if any(v in reason for v in vague_markers):
+                result["diagnosis"] = "NO_DATA"
+                result["answer"] = diag.get("reason", "Question is too vague.")
+                
+                result["explanation"] = PIPELINE["explanation"].run(
+                    question,
+                    intent,
+                    security,
+                    diag,
+                    result["answer"],
+                    False,
+                    False,
+                )
+
+                result["answer"] = format_answer(result["answer"])
+                return enforce_output_contract(result)
 
         # ── 4. Repair if primary failed or wrong topic retrieved ──────────
         if diag["label"] in {"QUERY_ERROR", "NO_DATA", "SCHEMA_MISMATCH"}:
